@@ -1,0 +1,52 @@
+﻿@using TestApplication.ViewModels;
+@model ApartmentListViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+<div class="container mt-2">
+    <div class="d-flex">
+        <div class="filters_block circled-white-back">
+            @{
+                foreach (var item in Model.Streets)
+                {
+                    <div data-id="@item.Id" class="street_holder">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" data-id="@item.Id" checked class="me-2 street-item_checkbox" />
+                                <p>@item.Name</p>
+                            </div>
+                            <span class="switch-btn_img" />
+                        </div>
+                        <div class="house-item_holder ps-2" style="display:none">
+                            @foreach (var houseItem in item.Houses)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <input type="checkbox" data-id="@houseItem.Id" checked class="me-2 house-item_checkbox" />
+                                    <p>@houseItem.Number</p>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                }
+            }
+        </div>
+        <div class="item_holder circled-white-back">
+            @{
+                foreach (var item in Model.Apartmments)
+                {
+                    <a asp-controller="Apartment" asp-action="Details" asp-route-id="@item.Id"
+                       class="item_block my-3" data-streetId="@item.StreetId" data-houseId="@item.HouseId">
+                        <p>@item.Counter?.CurrentValue</p>
+                        <p>@item.Street / @item.HouseNumber / @item.Number</p>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</div>
+<a asp-action="Create" asp-controller="Apartment" class="btn btn-primary right-bottom-absolute">Добавить квартиру</a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="/js/site.js"></script>

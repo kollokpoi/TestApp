@@ -1,0 +1,43 @@
+﻿@using TestApplication.ViewModels;
+@model AdressCreateViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+<div class="container circled-white-back">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" class="w-100">
+        <div class="form-group my-2">
+            <label asp-for="Number" class="control-label"></label>
+            <input asp-for="Number" class="form-control w-100" />
+            <span asp-validation-for="Number" class="text-danger"></span>
+        </div>
+        <div class="form-group my-2">
+            <label asp-for="StreetId" class="control-label"></label>
+            <div class="d-flex w-100">
+                <select asp-for="StreetId" id="streetSelect" class="w-100 me-2">
+                    @foreach (var item in Model.Streets)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <a class="btn btn-primary pointer-event" id="pop-up-btn">Добавить улицу</a>
+            </div>
+            <span asp-validation-for="StreetId" class="text-danger"></span>
+        </div>
+        <input class="btn btn-primary my-3" type="submit" value="Сохранить" />
+    </form>
+</div>
+
+<div class="position-absolute h-100 w-100  align-items-center justify-content-center" style="display:none;" id="pop-up-block">
+    <form class="p-3 circled-white-back w-50 position-relative" id="createStreetForm">
+        <input class="btn-close position-absolute" id="pop-up-closebtn" type="button" style="top:10px; right:10px;" />
+        <p class="text-center">Добавление улицы</p>
+        <input class="form-control w-100" name="name" id="streetName" />
+        <input class="btn btn-primary my-3" type="submit" value="Сохранить" />
+    </form>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="/js/site.js"></script>

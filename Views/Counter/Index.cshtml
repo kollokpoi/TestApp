@@ -1,0 +1,40 @@
+﻿@using TestApplication.ViewModels;
+@model HouseListViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+<div class="container mt-2">
+    <div class="d-flex">
+        <div class="filters_block circled-white-back">
+            @{
+                foreach (var item in Model.Streets)
+                {
+                    <div data-id="@item.Id" class="street_holder">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" data-id="@item.Id" checked class="me-2 street-item_checkbox" />
+                                <p>@item.Name</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="item_holder circled-white-back">
+            @{
+                foreach (var item in Model.Adresses)
+                {
+                    <a asp-controller="Adresses" asp-action="CountersToCheck" asp-route-id="@item.Id"
+                       class="item_block my-3" data-streetId="@item.StreetId">
+                        <p>@item.StreetName / @item.Number</p>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="/js/site.js"></script>

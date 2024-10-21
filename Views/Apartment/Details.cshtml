@@ -1,0 +1,58 @@
+﻿@using TestApplication.ViewModels;
+@model ApartmentViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-3">
+    <div class="circled-white-back mb-3 d-flex flex-column align-items-end p-3">
+        <p>Улица: @Model.Street</p>
+        <p>Дом: @Model.HouseNumber</p>
+        <p>Квартира: @Model.Number</p>
+    </div>
+    <p class="fw-bold align-self-center">Счетчик</p>
+    <div class="circled-white-back mb-3">
+        @{
+            if(Model.Counter is not null)
+            {
+                <p>
+                    Зав. Номер: @Model.Counter.Id
+                </p>
+                <p>Дата последней поверки: @Model.Counter.LastCheckDate</p>
+                <p>Дата следующей поверки: @Model.Counter.NextCheckDate</p>
+                <p>Показания: @Model.Counter.CurrentValue</p>
+            }
+            else
+            {
+                <p>-</p>
+            }
+        }
+
+    </div>
+    @{
+        if (Model.Counter is not null)
+        {
+            <a class="btn-link" asp-action="UpdateValue" asp-controller="Counter" asp-route-id="@Model.Counter.Id">Добавить показания</a>
+        }
+    }
+    <a class="btn-link" asp-action="ChangeCounter" asp-controller="Apartment" asp-route-id="@Model.Id">Сменить счетчик</a>
+    <p class="fw-bold align-self-center">История замен</p>
+    <div class="circled-white-back mb-3">
+        @{
+            if (Model.CounterStories.Count>0)
+            {
+                @foreach (var item in Model.CounterStories)
+                {
+                    <p>Дата установки: @item.DateOFChange</p>
+                    <p>Показания заменяемого счетчика: @(item.OlderValue)</p>
+                    <p>Счетчик, на который изменен: @(item.CounterToID.ToString() ?? "-")</p>
+                }
+            }
+            else
+            {
+                <p>-</p>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@using TestApplication.ViewModels;
+@model CountersToCheckViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+<div class="container mt-2 circled-white-back">
+    <p class="fw-bold">@Model.Adress</p>
+    @foreach (var item in Model.Apartments)
+    {
+        <a asp-controller="Apartments" asp-action="Details" asp-route-id="@item.Id"
+           class="item_block my-3" data-streetId="@item.StreetId">
+            <p>@item.Number</p>
+        </a>
+    }
+</div>

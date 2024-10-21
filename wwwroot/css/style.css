@@ -1,0 +1,112 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+a {
+    color: black;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+p{
+    margin:0;
+}
+body {
+    background: #f6f6f6;
+}
+.item_block {
+    flex-basis: 24%;
+    padding: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: end;
+    align-items: end;
+    -webkit-justify-content: end;
+    justify-content: end;
+    min-height: 10rem;
+    background: url("/img/images.jpg") center no-repeat;
+    background-size: cover;
+    color: white;
+    -moz-transition: .5s;
+    -o-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+.item_block:hover {
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+}
+.item_holder {
+    display: flex;
+    flex: 1;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.circled-white-back {
+    background: white;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+.filters_block {
+    flex-basis: 20%;
+    margin-right: 20px;
+}
+.switch-btn_img{
+    background: url("/img/arrow.png") center no-repeat;
+    background-size:cover;
+    display:block;
+    height:15px;
+    width:15px;
+    transform:rotate(180deg);
+    cursor:pointer;
+    transition: .5s
+}
+.switch-btn_img.active {
+    transform: rotate(90deg);
+}
+header {
+    height: 60px;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.right-bottom-absolute{
+    position:absolute;
+    bottom: 20px;
+    right: 20px;
+}
+#pop-up-block{
+    display:flex;
+    top:0;
+    left:0;
+    background:grey;
+}
+@media only screen and (max-width: 768px)  {
+    .item_block {
+        flex-basis: 48%;
+    }
+}
+@media only screen and (max-width: 550px) {
+    .item_block {
+        flex-basis: 100%;
+    }
+}

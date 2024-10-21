@@ -1,0 +1,32 @@
+﻿@using TestApplication.ViewModels;
+@model CounterViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+<div class="container circled-white-back">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" class="w-100">
+        <div class="form-group my-2">
+            <label asp-for="Id" class="control-label"></label>
+            <input asp-for="Id" class="form-control w-100" />
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+        <div class="form-group my-2">
+            <label asp-for="LastCheckDate" class="control-label"></label>
+            <input asp-for="LastCheckDate" class="form-control w-100" />
+            <span asp-validation-for="LastCheckDate" class="text-danger"></span>
+        </div>
+        <div class="form-group my-2">
+            <label asp-for="NextCheckDate" class="control-label"></label>
+            <input asp-for="NextCheckDate" class="form-control w-100" />
+            <span asp-validation-for="NextCheckDate" class="text-danger"></span>
+        </div>
+        <div class="form-group my-2">
+            <label asp-for="CurrentValue" class="control-label"></label>
+            <input asp-for="CurrentValue" class="form-control w-100" />
+            <span asp-validation-for="CurrentValue" class="text-danger"></span>
+        </div>
+        <input class="btn btn-primary my-3" type="submit" value="Сохранить" />
+    </form>
+</div>

@@ -1,0 +1,34 @@
+﻿@using TestApplication.ViewModels;
+@model ChangeCounterViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" class="w-100">
+        <input asp-for="ApartmentId" type="hidden"/>
+        <div class="form-group my-2">
+            <label asp-for="DateOfChange" class="control-label"></label>
+            <input asp-for="DateOfChange" class="form-control w-100" />
+            <span asp-validation-for="DateOfChange" class="text-danger"></span>
+        </div>
+        <div class="form-group my-2">
+            <label asp-for="OldValue" class="control-label"></label>
+            <input asp-for="OldValue" class="form-control w-100" />
+            <span asp-validation-for="OldValue" class="text-danger"></span>
+        </div>
+        <div class="form-group my-2">
+            <label asp-for="CounterTo" class="control-label"></label>
+            <select asp-for="CounterTo">
+                @foreach (var item in Model.Counters)
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+            <span asp-validation-for="CounterTo" class="text-danger"></span>
+        </div>
+        <input class="btn btn-primary my-3" type="submit" value="Сохранить" />
+    </form>
+</div>
